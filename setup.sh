@@ -109,3 +109,14 @@ fi
 
 ## re-insert for DNS configuration
 $(pwd)/$git_repo_name/google_dns_setup.sh
+if [[ ! `cat /etc/rc.local | grep -i $(pwd)/$git_repo_name/google_dns_setup.sh` ]]
+then
+ touch $temp_file
+ chmod 777 $temp_file
+ chown root.root $temp_file
+ cat /etc/rc.local | awk '{if($0!~/^exit[[:space:]]*[[:digit:]]*/){print $0}}' > $temp_file
+ echo "$(pwd)/$git_repo_name/google_dns_setup.sh" >> $temp_file
+ echo "exit 0" >> $temp_file
+ cp $temp_file /etc/rc.local
+ rm -rf $temp_file
+fi
