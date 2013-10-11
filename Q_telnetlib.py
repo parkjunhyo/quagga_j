@@ -14,8 +14,10 @@ def help_msg(variables):
  print "--> rm-ip  [interface] : Remove IP address into interface"
  print "--> add-default-gw  [IP address with mask] : Insert Default Gateway IP address"
  print "--> rm-default-gw  [IP address with mask] : Insert Default Gateway IP address"
- print "--> enable-ospf [loopback ip, router id]  : enable OSPF routing"
- print "--> disable-ospf : disable OSPF routing"
+ print "--> enable-ospf [Loopback ip without mask]  : Enable OSPF routing"
+ print "--> disable-ospf : Disable OSPF routing"
+ print "--> add-ospf-net [Network] [Area]: Insert network into OSPF routing"
+ print "--> rm-ospf-net [Network] [Area] : Remove network from OSPF routing"
  sys.exit()
 
 def confirm_variable(num, variables):

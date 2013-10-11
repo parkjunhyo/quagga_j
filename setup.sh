@@ -57,7 +57,7 @@ then
 fi
 
 ## find ip address on this host and re-generate the network with quagga
-IPaddr_info="$(pwd)/network_info.inf"
+IPaddr_info="$(pwd)/sysnet.info"
 if [[ ! -f $IPaddr_info ]]
 then
  ## File creation
@@ -96,7 +96,7 @@ then
  echo "default $(route | grep -i 'default' | awk '{print $2}')" >> $IPaddr_info
 
  ## network information re-arrange from linux to quagga
- cat $(pwd)/network_info.inf | awk '{if($0!~/default/){system("$(find / -name Q_telnet.py) add-ip "$1" "$2);}else{system("$(find / -name Q_telnet.py) add-default-gw "$2)}}'
+ cat $IPaddr_info | awk '{if($0!~/default/){system("$(find / -name Q_telnet.py) add-ip "$1" "$2);}else{system("$(find / -name Q_telnet.py) add-default-gw "$2)}}'
  cp $temp_file /etc/network/interfaces
  rm -rf $temp_file
 
