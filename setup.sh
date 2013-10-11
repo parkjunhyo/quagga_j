@@ -105,4 +105,4 @@ then
 fi
 
 ## re-insert for DNS configuration
-$(find / -wholename $(pwd)/google_dns_setup.sh)
+$(pwd)/$git_repo_name/google_dns_setup.sh
