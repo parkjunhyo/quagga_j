@@ -5,7 +5,8 @@
 declare -a routing_protocol=("zebra" "vtysh" "bgpd" "ospfd" "ripd")
 
 ## host loopback ip address (use definition)
-hostlo=${hostlo:='150.0.0.2/32'}
+## hostlo=${hostlo:='150.0.0.2/32'}
+source $(pwd)/netcfg.info
 
 ## install necessary utility for setup
 if [[ ! `cat /etc/resolv.conf | grep '8.8.8.8'` ]]
