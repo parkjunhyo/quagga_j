@@ -18,7 +18,10 @@ apt-get install -y git
 ## basc network configuration to enhance the system
 ## download git server (user can change)
 git_repo_name="system_netcfg_exchange"
-git clone http://github.com/parkjunhyo/$git_repo_name
+if [[ ! -d $(pwd)/system_netcfg_exchange ]]
+then
+ git clone http://github.com/parkjunhyo/$git_repo_name
+fi
 $(pwd)/$git_repo_name/adjust_timeout_failsafe.sh
 $(pwd)/$git_repo_name/packet_forward_enable.sh
 $(pwd)/$git_repo_name/google_dns_setup.sh
