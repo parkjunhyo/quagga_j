@@ -8,7 +8,7 @@ declare -a routing_protocol=("zebra" "vtysh" "bgpd" "ospfd" "ripd")
 hostlo=${hostlo:='150.0.0.2/32'}
 
 ## install necessary utility for setup
-if [[ ! `cat /etc/resolve.conf | grep '8.8.8.8'` ]]
+if [[ ! `cat /etc/resolv.conf | grep '8.8.8.8'` ]]
 then
  echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 fi
