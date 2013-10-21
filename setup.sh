@@ -82,9 +82,9 @@ then
   fi
   
   ## ohter interface and ip information
-  if [[ `ip addr show $iface | grep -i '[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*/[[:digit:]]'` ]]
+  if [[ `ip addr show $iface | grep -i '[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*/[[:digit:]]*'` ]]
   then
-   echo "$iface $(ip addr show $iface | grep -i '[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*/[[:digit:]]' | awk '{print $2}')" >> $IPaddr_info
+   echo "$iface $(ip addr show $iface | grep -i '[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*/[[:digit:]]*' | awk '{print $2}')" >> $IPaddr_info
    echo "auto $iface" >> $temp_file
    echo "iface $iface inet manual" >> $temp_file
    echo " up ip link set \$IFACE up" >> $temp_file
