@@ -87,7 +87,7 @@ then
    echo "$iface $(ip addr show $iface | grep -i '[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*/[[:digit:]]*' | awk '{print $2}')" >> $IPaddr_info
    echo "auto $iface" >> $temp_file
    echo "iface $iface inet manual" >> $temp_file
-   echo " up ip link set \$IFACE up" >> $temp_file
+   echo " up ip link set \$IFACE up promisc on" >> $temp_file
    echo " " >> $temp_file
   fi
  done
