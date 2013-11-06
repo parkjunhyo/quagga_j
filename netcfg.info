@@ -1,1 +1,2 @@
-hostlo=${hostlo:='150.0.0.2/32'}
+## Loopback IP address, example 192.168.0.2/32
+hostlo=${hostlo:='Loopback'}
