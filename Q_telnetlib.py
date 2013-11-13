@@ -11,7 +11,7 @@ def Warnning_msg():
 
 def help_msg(variables):
  print "--> add-ip [interface] [IP address with mask] : Insert IP address into interface"
- print "--> rm-ip  [interface] : Remove IP address into interface"
+ print "--> rm-ip  [interface] [IP address with mask] : Remove IP address into interface"
  print "--> add-default-gw  [IP address with mask] : Insert Default Gateway IP address"
  print "--> rm-default-gw  [IP address with mask] : Insert Default Gateway IP address"
  print "--> enable-ospf [Loopback ip without mask]  : Enable OSPF routing"
