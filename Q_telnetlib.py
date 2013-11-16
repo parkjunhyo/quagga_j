@@ -18,6 +18,7 @@ def help_msg(variables):
  print "--> disable-ospf : Disable OSPF routing"
  print "--> add-ospf-net [Network] [Area]: Insert network into OSPF routing"
  print "--> rm-ospf-net [Network] [Area] : Remove network from OSPF routing"
+ print "--> rm-iface [interface name] : Remove interface in Quagga"
  sys.exit()
 
 def confirm_variable(num, variables):
