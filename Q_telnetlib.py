@@ -129,5 +129,8 @@ def rm_iface(variables):
  telnet_pointer=zebra_telnet_open()
  telnet_pointer.write("no interface "+IF+"\n")
  telnet_close(telnet_pointer)
+ telnet_pointer=ospf_telnet_open()
+ telnet_pointer.write("no interface "+IF+"\n")
+ telnet_close(telnet_pointer)
 
 functions_name={"-h":help_msg,"--help":help_msg,"add-ip":add_ip,"rm-ip":rm_ip,"add-default-gw":add_default_gw,"rm-default-gw":rm_default_gw,"enable-ospf":enable_ospf,"disable-ospf":disable_ospf,"add-ospf-net":add_ospf_net,"rm-ospf-net":rm_ospf_net,"rm-iface":rm_iface}
