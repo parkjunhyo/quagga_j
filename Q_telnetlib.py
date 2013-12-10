@@ -18,7 +18,8 @@ def help_msg(variables):
  print "--> disable-ospf : Disable OSPF routing"
  print "--> add-ospf-net [Network] [Area]: Insert network into OSPF routing"
  print "--> rm-ospf-net [Network] [Area] : Remove network from OSPF routing"
- print "--> rm-iface [interface name] : Remove interface in Quagga"
+ print "--> rm-zebra-iface [interface name] : Remove zebra interface in Quagga"
+ print "--> rm-ospf-iface [interface name] : Remove ospf interface in Quagga"
  sys.exit()
 
 def confirm_variable(num, variables):
@@ -123,14 +124,19 @@ def rm_ospf_net(variables):
  telnet_pointer.write("no network "+IPADDRMASK+" area "+AREA+"\n")
  telnet_close(telnet_pointer)
 
-def rm_iface(variables):
+def rm_zebra_iface(variables):
  confirm_variable(1, variables)
  IF=variables[0]
  telnet_pointer=zebra_telnet_open()
  telnet_pointer.write("no interface "+IF+"\n")
  telnet_close(telnet_pointer)
+
+def rm_ospf_iface(variables):
+ confirm_variable(1, variables)
+ IF=variables[0]
  telnet_pointer=ospf_telnet_open()
  telnet_pointer.write("no interface "+IF+"\n")
  telnet_close(telnet_pointer)
 
-functions_name={"-h":help_msg,"--help":help_msg,"add-ip":add_ip,"rm-ip":rm_ip,"add-default-gw":add_default_gw,"rm-default-gw":rm_default_gw,"enable-ospf":enable_ospf,"disable-ospf":disable_ospf,"add-ospf-net":add_ospf_net,"rm-ospf-net":rm_ospf_net,"rm-iface":rm_iface}
+
+functions_name={"-h":help_msg,"--help":help_msg,"add-ip":add_ip,"rm-ip":rm_ip,"add-default-gw":add_default_gw,"rm-default-gw":rm_default_gw,"enable-ospf":enable_ospf,"disable-ospf":disable_ospf,"add-ospf-net":add_ospf_net,"rm-ospf-net":rm_ospf_net,"rm-zebra-iface":rm_zebra_iface,"rm-ospf-iface":rm_ospf_iface}
