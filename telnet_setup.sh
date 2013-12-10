@@ -1,25 +1,25 @@
 #! /usr/bin/env bash
 
+working_directory=$(pwd)
+
 ## install necessary utility for setup
 if [[ ! `cat /etc/resolv.conf | grep '8.8.8.8'` ]]
 then
  echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 fi
-apt-get install -y git
+apt-get install -qqy --force-yes git xinetd telnet telnetd
 
 ## basc network configuration to enhance the system
 ## download git server (user can change)
-git_repo_name="system_netcfg_exchange"
-if [[ ! -d $(pwd)/system_netcfg_exchange ]]
+if [ ! -d $working_directory/system_netcfg_exchange ]
 then
- git clone http://github.com/parkjunhyo/$git_repo_name
+ git clone https://github.com/parkjunhyo/system_netcfg_exchange.git
+ cd $working_directory/system_netcfg_exchange
+ ./adjust_timeout_failsafe.sh
+ ./packet_forward_enable.sh
+ ./google_dns_setup.sh
+ cd $working_directory
 fi
-$(pwd)/$git_repo_name/adjust_timeout_failsafe.sh
-$(pwd)/$git_repo_name/packet_forward_enable.sh
-$(pwd)/$git_repo_name/google_dns_setup.sh
-
-## xinetd(telnet) installation
-apt-get install -y xinetd telnet telnetd
 
 ## xinetd(telnet) activation
 xinetd_telnet="/etc/xinetd.d/telnet"
