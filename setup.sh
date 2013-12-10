@@ -5,13 +5,13 @@
 declare -a routing_protocol=("zebra" "vtysh" "bgpd" "ospfd" "ripd")
 
 ## host loopback ip address (use definition)
-## hostlo=${hostlo:='150.0.0.2/32'}
+## hostlo=${hostlo:='150.0.0.2'}
 working_directory=$(pwd)
 env_source_path=$(find `pwd` -name netcfg.info)
 source $env_source_path
 
 ## host loopback ip address, default ip is 150.0.0.2/32
-hostlo=${hostlo:='192.168.0.2/32'}
+hostlo=${hostlo:='192.168.0.2'}
 
 ## install necessary utility for setup
 if [[ ! `cat /etc/resolv.conf | grep '8.8.8.8'` ]]
