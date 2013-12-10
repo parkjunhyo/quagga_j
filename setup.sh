@@ -74,13 +74,18 @@ do
  then
   echo "iface $ifname inet loopback" >> $interface_tmp
   ifname_ip="$hostlo/32"
+  # ip register in quagga
+  $(find `pwd` -name Q_telnet.py) add-ip $ifname $ifname_ip
  else
   echo "iface $ifname inet manual" >> $interface_tmp
   echo " up ip link set \$IFACE up promisc on" >> $interface_tmp
-  ifname_ip=`ip addr show $ifname | grep -i "\<inet\>" | awk '{print $2}'`
+  # ip register in quagga
+  for ifname_ip in $(ip addr show $ifname | grep -i "\<inet\>" | awk '{print $2}')
+  do
+   $(find `pwd` -name Q_telnet.py) add-ip $ifname $ifname_ip
+  done
  fi
  echo " " >> $interface_tmp
- $(find `pwd` -name Q_telnet.py) add-ip $ifname $ifname_ip
 done
 cp $interface_tmp /etc/network/interfaces
 rm -rf $interface_tmp
