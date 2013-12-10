@@ -107,16 +107,21 @@ then
  /etc/init.d/networking start
 fi
 
-## re-insert for DNS configuration
+## run dns configuration
 $(pwd)/$git_repo_name/google_dns_setup.sh
-if [[ ! `cat /etc/rc.local | grep -i $(pwd)/$git_repo_name/google_dns_setup.sh` ]]
+
+## insert the init processing for this daemon
+dns_init=$(find `pwd` -name google_dns_setup.sh)
+autoflush_init=$(find `pwd` -name run_autoflush.py)
+if [[ ! `cat /etc/rc.local | grep -i $dns_init` ]]
 then
- touch $temp_file
- chmod 777 $temp_file
- chown root.root $temp_file
- cat /etc/rc.local | awk '{if($0!~/^exit[[:space:]]*[[:digit:]]*/){print $0}}' > $temp_file
- echo "$(pwd)/$git_repo_name/google_dns_setup.sh" >> $temp_file
- echo "exit 0" >> $temp_file
- cp $temp_file /etc/rc.local
- rm -rf $temp_file
+ sed -i "/^exit[[:space:]]*[[:digit:]]*$/d" /etc/rc.local
+ echo "$(find `pwd` -name google_dns_setup.sh)" >> /etc/rc.local
+ echo "exit 0" >> /etc/rc.local
+fi
+if [[ ! `cat /etc/rc.local | grep -i $autoflush_init` ]]
+then
+ sed -i "/^exit[[:space:]]*[[:digit:]]*$/d" /etc/rc.local
+ echo "$(find `pwd` -name run_autoflush.py)" >> /etc/rc.local
+ echo "exit 0" >> /etc/rc.local
 fi
