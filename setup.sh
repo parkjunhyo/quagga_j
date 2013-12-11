@@ -103,6 +103,7 @@ $(find `pwd` -name google_dns_setup.sh)
 ## insert the init processing for this daemon
 dns_init=$(find `pwd` -name google_dns_setup.sh)
 autoflush_init=$(find `pwd` -name run_autoflush.py)
+$autoflush_init 10
 if [[ ! `cat /etc/rc.local | grep -i $dns_init` ]]
 then
  sed -i "/^exit[[:space:]]*[[:digit:]]*$/d" /etc/rc.local
